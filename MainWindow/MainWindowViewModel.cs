@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System.Collections.Generic;
 
 namespace NET_TVShowPlaylist.MainWindow
 {
@@ -9,6 +10,13 @@ namespace NET_TVShowPlaylist.MainWindow
         {
             get => _title; 
             set { SetProperty(ref _title, value); }
+        }
+
+        private IEnumerable<Models.TVShow> _tvShows;
+        public IEnumerable<Models.TVShow> TVShows
+        {
+            get => _tvShows;
+            set { SetProperty(ref _tvShows, value); }
         }
 
         public MainWindowViewModel()
