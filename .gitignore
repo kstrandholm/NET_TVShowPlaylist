@@ -36,4 +36,7 @@
 *.ide-wal
 
 # GitKraken Added
-.vs/NET_TVShowPlaylist/v16/Server/sqlite3/
+.vs/
+bin/
+obj/
+
