@@ -9,9 +9,33 @@ namespace NET_TVShowPlaylist.Models
     public class Episode : BindableBase
     {
         /// <summary>
-        /// Integer identifier for the TV show this episode belongs to.
+        /// Constructor with the minimum information needed to create a new Episode record.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="season"></param>
+        /// <param name="episode"></param>
+        /// <param name="length"></param>
+        /// <param name="watched"></param>
+        public Episode(string name, int season, int episode, int length, bool watched)
+        {
+            ShowID = new uint();
+            EpisodeID = new uint();
+            SeasonNum = season;
+            EpisodeNum = episode;
+            Name = name;
+            LengthMinutes = length;
+            Watched = watched;
+        }
+
+        /// <summary>
+        /// Unique identifier for the TV show this episode belongs to.
         /// </summary>
         public uint ShowID { get; set; }
+
+        /// <summary>
+        /// Unique identifier for this episode.
+        /// </summary>
+        public uint EpisodeID { get; set; }
 
         /// <summary>
         /// Season number this episode belongs to within the TV show.
@@ -39,5 +63,12 @@ namespace NET_TVShowPlaylist.Models
         /// True if this episode has been watched, otherwise false.
         /// </summary>
         public bool Watched { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name + " - Season #" + SeasonNum + " Episodes #" + EpisodeNum + " Length: " + LengthMinutes + " minute(s)" +
+                (Watched ? " - Watched" : "");
+        }
     }
 }

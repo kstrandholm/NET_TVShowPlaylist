@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using CsvHelper.Configuration.Attributes;
+using Prism.Mvvm;
 
 namespace NET_TVShowPlaylist.Models
 {
@@ -8,12 +9,12 @@ namespace NET_TVShowPlaylist.Models
     public class TVShow : BindableBase
     {
         /// <summary>
-        /// Constructor
+        /// Constructor with the minimum information needed to create a new TV Show record.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="seasons"></param>
-        /// <param name="episodes"></param>
-        /// <param name="favorite"></param>
+        /// <param name="name">Name of the show.</param>
+        /// <param name="seasons">Number of seasons in the show.</param>
+        /// <param name="episodes">Total number of episodes in the show.</param>
+        /// <param name="favorite">Whether this tv show is a favorite show or not.</param>
         public TVShow(string name, int seasons, int episodes, bool favorite)
         {
             ShowID = new uint();
@@ -26,6 +27,7 @@ namespace NET_TVShowPlaylist.Models
         /// <summary>
         /// Integer identifier for this TV show.
         /// </summary>
+        [Ignore]
         public uint ShowID { get; }
 
         private string _name;
@@ -66,6 +68,12 @@ namespace NET_TVShowPlaylist.Models
         {
             get => _favorite;
             set => SetProperty(ref _favorite, value);
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name + " - Seasons: " + TotalSeasons + " Episodes: " + TotalEpisodes + (Favorite ? " - Favorite" : "");
         }
     }
 }
