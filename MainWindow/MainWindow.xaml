@@ -8,5 +8,21 @@
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
         <Label Content="{Binding Title}"/>
+        <ListView ItemsSource="{Binding TVShows}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Total Seasons" DisplayMemberBinding="{Binding TotalSeasons}" />
+                    <GridViewColumn Header="Total Episodes" DisplayMemberBinding="{Binding TotalEpisodes}" />
+                    <GridViewColumn Header="Favorite" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Favorite}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
