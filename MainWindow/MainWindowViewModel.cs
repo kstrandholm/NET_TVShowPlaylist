@@ -21,6 +21,11 @@ namespace NET_TVShowPlaylist.MainWindow
 
         public MainWindowViewModel()
         {
+            _tvShows = new List<Models.TVShow>
+            {
+                new Models.TVShow("Test", 1, 4, false),
+                new Models.TVShow("Test2", 2, 20, true)
+            };
 
         }
     }
