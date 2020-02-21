@@ -1,5 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 using Prism.Mvvm;
+using System.Collections.Generic;
 
 namespace NET_TVShowPlaylist.Models
 {
@@ -15,20 +16,21 @@ namespace NET_TVShowPlaylist.Models
         /// <param name="seasons">Number of seasons in the show.</param>
         /// <param name="episodes">Total number of episodes in the show.</param>
         /// <param name="favorite">Whether this tv show is a favorite show or not.</param>
-        public TVShow(string name, int seasons, int episodes, bool favorite)
+        public TVShow(string name, int seasons, int episodes, bool favorite, List<Episode> episodeList)
         {
-            ShowID = new uint();
+            ID = new uint();
             Name = name;
             TotalSeasons = seasons;
             TotalEpisodes = episodes;
             Favorite = favorite;
+            EpisodeList = episodeList;
         }
 
         /// <summary>
         /// Integer identifier for this TV show.
         /// </summary>
         [Ignore]
-        public uint ShowID { get; }
+        public uint ID { get; }
 
         private string _name;
         /// <summary>
@@ -68,6 +70,16 @@ namespace NET_TVShowPlaylist.Models
         {
             get => _favorite;
             set => SetProperty(ref _favorite, value);
+        }
+
+        private List<Episode> _episodeList;
+        /// <summary>
+        /// List of episodes associated with this TV Show.
+        /// </summary>
+        public List<Episode> EpisodeList
+        {
+            get => _episodeList;
+            set => SetProperty(ref _episodeList, value);
         }
 
         /// <inheritdoc/>

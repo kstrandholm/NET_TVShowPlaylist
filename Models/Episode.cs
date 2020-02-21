@@ -18,8 +18,7 @@ namespace NET_TVShowPlaylist.Models
         /// <param name="watched"></param>
         public Episode(string name, int season, int episode, int length, bool watched)
         {
-            ShowID = new uint();
-            EpisodeID = new uint();
+            ID = new uint();
             SeasonNum = season;
             EpisodeNum = episode;
             Name = name;
@@ -28,14 +27,9 @@ namespace NET_TVShowPlaylist.Models
         }
 
         /// <summary>
-        /// Unique identifier for the TV show this episode belongs to.
-        /// </summary>
-        public uint ShowID { get; set; }
-
-        /// <summary>
         /// Unique identifier for this episode.
         /// </summary>
-        public uint EpisodeID { get; set; }
+        public uint ID { get; set; }
 
         /// <summary>
         /// Season number this episode belongs to within the TV show.
