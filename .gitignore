@@ -35,10 +35,12 @@
 *.ide-shm
 *.ide-wal
 
+# Local Save Files
+ShowInformation/
+
 # GitKraken Added
 .vs/
 bin/
 obj/
-
-# Local Save Files
-ShowInformation/
+packages/
+*.sln
