@@ -1,5 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using System.Collections.Generic;
 
 namespace NET_TVShowPlaylist.Models
@@ -29,7 +28,6 @@ namespace NET_TVShowPlaylist.Models
         /// <summary>
         /// Integer identifier for this TV show.
         /// </summary>
-        [Ignore]
         public uint ID { get; }
 
         private string _name;
