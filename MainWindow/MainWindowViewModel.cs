@@ -23,7 +23,7 @@ namespace NET_TVShowPlaylist.MainWindow
 
         public MainWindowViewModel()
         {
-            var file = ImportFiles.ImportTVShowFile("..\\..\\ShowInformation\\Shows.csv").ToList();
+            var file = FileImportExport.ImportTVShowFile("..\\..\\ShowInformation\\Shows.csv").ToList();
         }
     }
 }

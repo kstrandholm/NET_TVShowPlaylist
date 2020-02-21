@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NET_TVShowPlaylist
 {
-    public static class ImportFiles
+    public static class FileImportExport
     {
         public static List<TVShow> ImportTVShowFile(string path)
         {
@@ -44,6 +44,30 @@ namespace NET_TVShowPlaylist
                 }
 
                 return episodes;
+            }
+        }
+
+        public static void ExportEpisodeFile(string path, IEnumerable<Episode> episodes)
+        {
+            var episodeFile = new List<EpisodeFile>();
+
+            foreach (var ep in episodes)
+            {
+                episodeFile.Add(
+                    new EpisodeFile()
+                    {
+                        Episode = ep.EpisodeNum,
+                        Name = ep.Name,
+                        Length = ep.LengthMinutes,
+                        Season = ep.SeasonNum,
+                        Watched = ep.Watched
+                    });
+            }
+
+            using (var writer = new StreamWriter(path))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(episodeFile);
             }
         }
 
