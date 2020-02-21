@@ -1,4 +1,6 @@
-﻿using Prism.Mvvm;
+﻿using CsvHelper.Configuration.Attributes;
+using Prism.Mvvm;
+using System.Collections.Generic;
 
 namespace NET_TVShowPlaylist.Models
 {
@@ -8,25 +10,27 @@ namespace NET_TVShowPlaylist.Models
     public class TVShow : BindableBase
     {
         /// <summary>
-        /// Constructor
+        /// Constructor with the minimum information needed to create a new TV Show record.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="seasons"></param>
-        /// <param name="episodes"></param>
-        /// <param name="favorite"></param>
-        public TVShow(string name, int seasons, int episodes, bool favorite)
+        /// <param name="name">Name of the show.</param>
+        /// <param name="seasons">Number of seasons in the show.</param>
+        /// <param name="episodes">Total number of episodes in the show.</param>
+        /// <param name="favorite">Whether this tv show is a favorite show or not.</param>
+        public TVShow(string name, int seasons, int episodes, bool favorite, List<Episode> episodeList)
         {
-            ShowID = new uint();
+            ID = new uint();
             Name = name;
             TotalSeasons = seasons;
             TotalEpisodes = episodes;
             Favorite = favorite;
+            EpisodeList = episodeList;
         }
 
         /// <summary>
         /// Integer identifier for this TV show.
         /// </summary>
-        public uint ShowID { get; }
+        [Ignore]
+        public uint ID { get; }
 
         private string _name;
         /// <summary>
@@ -66,6 +70,22 @@ namespace NET_TVShowPlaylist.Models
         {
             get => _favorite;
             set => SetProperty(ref _favorite, value);
+        }
+
+        private List<Episode> _episodeList;
+        /// <summary>
+        /// List of episodes associated with this TV Show.
+        /// </summary>
+        public List<Episode> EpisodeList
+        {
+            get => _episodeList;
+            set => SetProperty(ref _episodeList, value);
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return Name + " - Seasons: " + TotalSeasons + " Episodes: " + TotalEpisodes + (Favorite ? " - Favorite" : "");
         }
     }
 }
