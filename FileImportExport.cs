@@ -21,10 +21,13 @@ namespace NET_TVShowPlaylist
 
                 var tvShowFile = csv.GetRecords<TVShowFile>().ToList();
                 var tvShows = new List<TVShow>();
+                var episodes = new List<List<Episode>>();
 
                 foreach (var s in tvShowFile)
                 {
-                    tvShows.Add(new TVShow(s.Show, s.Seasons, s.Episodes, s.Favorite));
+                    var episodeList = ImportEpisodeFile(s);
+                    var show = new TVShow(s.Show, s.Seasons, s.Episodes, s.Favorite, episodeList);
+                    tvShows.Add(show);
                 }
 
                 return tvShows;
@@ -33,19 +36,26 @@ namespace NET_TVShowPlaylist
 
         private static List<Episode> ImportEpisodeFile(TVShowFile show)
         {
-            using (var reader = new StreamReader(path))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            try
             {
-                csv.Configuration.Delimiter = "|";
-                var episodeFile = csv.GetRecords<EpisodeFile>().ToList();
-                var episodes = new List<Episode>();
-
-                foreach (var e in episodeFile)
+                using (var reader = new StreamReader(EPISODES_FILE_PATH + show.Show + ".csv"))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    episodes.Add(new Episode(e.Name, e.Season, e.Episode, e.Length, e.Watched));
-                }
+                    csv.Configuration.Delimiter = "|";
+                    var episodeFile = csv.GetRecords<EpisodeFile>().ToList();
+                    var episodes = new List<Episode>();
+
+                    foreach (var e in episodeFile)
+                    {
+                        episodes.Add(new Episode(e.Name, e.Season, e.Episode, e.Length, e.Watched));
+                    }
 
                     return episodes;
+                }
+            }
+            catch
+            {
+                return new List<Episode>();
             }
         }
 
