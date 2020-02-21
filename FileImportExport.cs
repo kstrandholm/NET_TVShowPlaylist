@@ -7,11 +7,18 @@ using System.Linq;
 
 namespace NET_TVShowPlaylist
 {
+    /// <summary>
+    /// Class to import and export CSV Files for the TV Shows and Episode lists.
+    /// </summary>
     public static class FileImportExport
     {
         private const string SHOWS_FILE_PATH = "..\\..\\ShowInformation\\Shows.csv";
         private const string EPISODES_FILE_PATH = "..\\..\\ShowInformation\\Episodes\\";
 
+        /// <summary>
+        /// Import any TV Show and Episodes lists available at the const path.
+        /// </summary>
+        /// <returns>List of TV Shows and their related episodes.</returns>
         public static List<TVShow> ImportFiles()
         {
             using (var reader = new StreamReader(SHOWS_FILE_PATH))
@@ -34,6 +41,11 @@ namespace NET_TVShowPlaylist
             }
         }
 
+        /// <summary>
+        /// Import any Episodes associated with the provided TV Show available at the const path.
+        /// </summary>
+        /// <param name="show">TV Show to receive the list of episodes for.</param>
+        /// <returns>List of episodes associated with the provided TV Show.</returns>
         private static List<Episode> ImportEpisodeFile(TVShowFile show)
         {
             try
