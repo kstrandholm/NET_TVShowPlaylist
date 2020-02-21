@@ -14,7 +14,6 @@ namespace NET_TVShowPlaylist
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                csv.Configuration.HasHeaderRecord = true;
                 csv.Configuration.Delimiter = "|";
                 var tvShowFile = csv.GetRecords<TVShowFile>().ToList();
                 var tvShows = new List<TVShow>();
@@ -33,7 +32,6 @@ namespace NET_TVShowPlaylist
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                csv.Configuration.HasHeaderRecord = true;
                 csv.Configuration.Delimiter = "|";
                 var episodeFile = csv.GetRecords<EpisodeFile>().ToList();
                 var episodes = new List<Episode>();
@@ -44,6 +42,31 @@ namespace NET_TVShowPlaylist
                 }
 
                 return episodes;
+            }
+        }
+
+        public static void ExportTVShowFile(string path, IEnumerable<TVShow> tvShows)
+        {
+            var tvShowFile = new List<TVShowFile>();
+
+            foreach (var show in tvShows)
+            {
+                tvShowFile.Add(
+                    new TVShowFile()
+                    {
+                        Show = show.Name,
+                        Seasons = show.TotalSeasons,
+                        Episodes = show.TotalEpisodes,
+                        Favorite = show.Favorite
+                    });
+            }
+
+            // TODO: Optional ConvertFileToModel and ConvertModelToFile methods
+
+            using (var writer = new StreamWriter(path))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(tvShowFile);
             }
         }
 
