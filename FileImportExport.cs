@@ -1,4 +1,4 @@
-﻿using CsvHelper;
+using CsvHelper;
 using NET_TVShowPlaylist.Models;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,12 +9,16 @@ namespace NET_TVShowPlaylist
 {
     public static class FileImportExport
     {
-        public static List<TVShow> ImportTVShowFile(string path)
+        private const string SHOWS_FILE_PATH = "..\\..\\ShowInformation\\Shows.csv";
+        private const string EPISODES_FILE_PATH = "..\\..\\ShowInformation\\Episodes\\";
+
+        public static List<TVShow> ImportFiles()
         {
-            using (var reader = new StreamReader(path))
+            using (var reader = new StreamReader(SHOWS_FILE_PATH))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.Delimiter = "|";
+
                 var tvShowFile = csv.GetRecords<TVShowFile>().ToList();
                 var tvShows = new List<TVShow>();
 
@@ -27,7 +31,7 @@ namespace NET_TVShowPlaylist
             }
         }
 
-        public static IEnumerable<Episode> ImportEpisodeFile(string path)
+        private static List<Episode> ImportEpisodeFile(TVShowFile show)
         {
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -41,11 +45,15 @@ namespace NET_TVShowPlaylist
                     episodes.Add(new Episode(e.Name, e.Season, e.Episode, e.Length, e.Watched));
                 }
 
-                return episodes;
+                    return episodes;
             }
         }
 
-        public static void ExportTVShowFile(string path, IEnumerable<TVShow> tvShows)
+        /// <summary>
+        /// Write out the TV Show's details to a file.
+        /// </summary>
+        /// <param name="tvShows"></param>
+        public static void ExportTVShowFile(IEnumerable<TVShow> tvShows)
         {
             var tvShowFile = new List<TVShowFile>();
 
@@ -60,16 +68,21 @@ namespace NET_TVShowPlaylist
                         Favorite = show.Favorite
                     });
             }
-
             // TODO: Optional ConvertFileToModel and ConvertModelToFile methods
 
-            using (var writer = new StreamWriter(path))
+            using (var writer = new StreamWriter(SHOWS_FILE_PATH))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                csv.Configuration.Delimiter = "|";
                 csv.WriteRecords(tvShowFile);
             }
         }
 
+        /// <summary>
+        /// Write out the TV Show's episode details to a file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="episodes"></param>
         public static void ExportEpisodeFile(string path, IEnumerable<Episode> episodes)
         {
             var episodeFile = new List<EpisodeFile>();
@@ -90,6 +103,7 @@ namespace NET_TVShowPlaylist
             using (var writer = new StreamWriter(path))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                csv.Configuration.Delimiter = "|";
                 csv.WriteRecords(episodeFile);
             }
         }
@@ -103,22 +117,22 @@ namespace NET_TVShowPlaylist
             /// <summary>
             /// Name of the TV show.
             /// </summary>
-            public string Show { get;  set; }
+            public string Show { get; set; }
 
             /// <summary>
             /// Total number of seasons that have been aired and are available to watch.
             /// </summary>
-            public int Seasons { get;  set; }
+            public int Seasons { get; set; }
 
             /// <summary>
             /// Total number of episodes that have been aired and are available to watch.
             /// </summary>
-            public int Episodes { get;  set; }
+            public int Episodes { get; set; }
 
             /// <summary>
             /// True if this show is a favorite, otherwise false.
             /// </summary>
-            public bool Favorite { get;  set; }
+            public bool Favorite { get; set; }
         }
 
         /// <summary>
