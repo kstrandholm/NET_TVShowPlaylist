@@ -1,5 +1,7 @@
 ﻿using Prism.Mvvm;
 using System.Collections.Generic;
+using NET_TVShowPlaylist.Models;
+using System.Linq;
 
 namespace NET_TVShowPlaylist.MainWindow
 {
@@ -12,8 +14,8 @@ namespace NET_TVShowPlaylist.MainWindow
             set { SetProperty(ref _title, value); }
         }
 
-        private IEnumerable<Models.TVShow> _tvShows;
-        public IEnumerable<Models.TVShow> TVShows
+        private IEnumerable<TVShow> _tvShows;
+        public IEnumerable<TVShow> TVShows
         {
             get => _tvShows;
             set { SetProperty(ref _tvShows, value); }
@@ -21,7 +23,7 @@ namespace NET_TVShowPlaylist.MainWindow
 
         public MainWindowViewModel()
         {
-
+            var tvShowFile = FileImportExport.ImportFiles();
         }
     }
 }
