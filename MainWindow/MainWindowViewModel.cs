@@ -5,27 +5,27 @@ using System.Linq;
 
 namespace NET_TVShowPlaylist.MainWindow
 {
-    public class MainWindowViewModel : BindableBase
-    {
-        private string _title = "Prism Application";
-        public string Title
-        {
-            get => _title; 
-            set { SetProperty(ref _title, value); }
-        }
+	public class MainWindowViewModel : BindableBase
+	{
+		private string _title = "Prism Application";
+		public string Title
+		{
+			get => _title;
+			set { SetProperty(ref _title, value); }
+		}
 
-        private IEnumerable<TVShow> _tvShows;
-        public IEnumerable<TVShow> TVShows
-        {
-            get => _tvShows;
-            set { SetProperty(ref _tvShows, value); }
-        }
+		private IEnumerable<TVShow> _tvShows;
+		public IEnumerable<TVShow> TVShows
+		{
+			get => _tvShows;
+			set { SetProperty(ref _tvShows, value); }
+		}
 
-        public MainWindowViewModel()
-        {
-            var tvShowFile = FileImportExport.ImportFiles();
+		public MainWindowViewModel()
+		{
+			var tvShowFile = FileImportExport.ImportFiles();
 
-            _tvShows = tvShowFile;
-        }
-    }
+			_tvShows = tvShowFile;
+		}
+	}
 }
