@@ -24,6 +24,8 @@ namespace NET_TVShowPlaylist.MainWindow
         public MainWindowViewModel()
         {
             var tvShowFile = FileImportExport.ImportFiles();
+
+            _tvShows = tvShowFile;
         }
     }
 }
