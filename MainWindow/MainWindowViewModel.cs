@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using NET_TVShowPlaylist.Models;
 using System.Linq;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace NET_TVShowPlaylist.MainWindow
 {
@@ -21,11 +23,18 @@ namespace NET_TVShowPlaylist.MainWindow
 			set { SetProperty(ref _tvShows, value); }
 		}
 
+		public ICommand ShowDetailCommand { get; private set; }
+
 		public MainWindowViewModel()
 		{
-			var tvShowFile = FileImportExport.ImportFiles();
+			_tvShows = FileImportExport.ImportFiles();
 
-			_tvShows = tvShowFile;
+			ShowDetailCommand = new DelegateCommand(OpenDetails);
+		}
+
+		public void OpenDetails()
+		{
+			return;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿<Window x:Class="NET_TVShowPlaylist.MainWindow.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525" >
@@ -12,6 +13,11 @@
 			<ListView ItemsSource="{Binding TVShows}" Width="450" MaxHeight="300"
 					  HorizontalAlignment="Center"
 					  ItemContainerStyle="{StaticResource alternatingStyle}" AlternationCount="2">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseDoubleClick">
+						<i:InvokeCommandAction Command="{Binding ShowDetailCommand}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
 				<ListView.View>
 					<GridView>
 						<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
