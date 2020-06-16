@@ -1,4 +1,4 @@
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using System.Collections.Generic;
 using NET_TVShowPlaylist.Models;
 using System.Linq;
@@ -37,6 +37,7 @@ namespace NET_TVShowPlaylist.MainWindow
 
 		public void OpenDetails(TVShow selectedShow)
 		{
+			var show = _tvShows.SingleOrDefault(s => s.Name == selectedShow.Name);
 			
 
 			return;
