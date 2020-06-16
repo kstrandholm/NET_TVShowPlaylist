@@ -39,6 +39,7 @@ namespace NET_TVShowPlaylist.MainWindow
 		{
 			var show = _tvShows.SingleOrDefault(s => s.Name == selectedShow.Name);
 			
+			// Raise event to create new TVShowDeatil window instance and pass in show variable
 
 			return;
 		}
