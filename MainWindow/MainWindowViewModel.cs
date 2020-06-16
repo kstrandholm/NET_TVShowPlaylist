@@ -32,11 +32,13 @@ namespace NET_TVShowPlaylist.MainWindow
 		{
 			_tvShows = FileImportExport.ImportFiles();
 
-			ShowDetailCommand = new DelegateCommand(OpenDetails);
+			ShowDetailCommand = new DelegateCommand<TVShow>(OpenDetails);
 		}
 
-		public void OpenDetails()
+		public void OpenDetails(TVShow selectedShow)
 		{
+			
+
 			return;
 		}
 	}
