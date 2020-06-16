@@ -19,11 +19,11 @@
 		
 		<ContentControl prism:RegionManager.RegionName="ContentRegion" />
 		
-		<ScrollViewer VerticalScrollBarVisibility="Auto">
-			<ListView ItemsSource="{Binding TVShows}" Width="450" MaxHeight="300"
-					  HorizontalAlignment="Center"
-					  ItemContainerStyle="{StaticResource alternatingStyle}" AlternationCount="2">
-				<i:Interaction.Triggers>
+		<!--TEMP: window size text display--> 
+		<!--<StackPanel Orientation="Horizontal">
+			<Label Content="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"/>
+			<Label Content="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"/>
+		</StackPanel>-->
 
 		<!-- TV Show Display -->
 		<ListView ItemsSource="{Binding TVShows}" Grid.Row="0" Grid.ColumnSpan="2"
