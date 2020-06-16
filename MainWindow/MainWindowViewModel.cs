@@ -1,4 +1,4 @@
-﻿using Prism.Mvvm;
+using Prism.Mvvm;
 using System.Collections.Generic;
 using NET_TVShowPlaylist.Models;
 using System.Linq;
@@ -25,6 +25,9 @@ namespace NET_TVShowPlaylist.MainWindow
 
 		public ICommand ShowDetailCommand { get; private set; }
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public MainWindowViewModel()
 		{
 			_tvShows = FileImportExport.ImportFiles();
