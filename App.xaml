@@ -4,6 +4,32 @@
 	     xmlns:prism="http://prismlibrary.com/"
              xmlns:local="clr-namespace:NET_TVShowPlaylist">
     <Application.Resources>
-         
-    </Application.Resources>
+
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary>
+					<Style x:Key="alternatingStyle" TargetType="{x:Type ListViewItem}">
+						<Style.Triggers>
+							<Trigger Property="ItemsControl.AlternationIndex" Value="0">
+								<Setter Property="Background" Value="LightSlateGray" />
+							</Trigger>
+							<Trigger Property="ItemsControl.AlternationIndex" Value="1">
+								<Setter Property="Background" Value="AntiqueWhite" />
+							</Trigger>
+							<Trigger Property="IsSelected" Value="True">
+								<Setter Property="Background" Value="LightCoral" />
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+
+					<Style TargetType="{x:Type Button}">
+						<Style.Setters>
+							<Setter Property="Margin" Value="5"/>
+						</Style.Setters>
+					</Style>
+					
+				</ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
 </prism:PrismApplication>

@@ -1,28 +1,63 @@
 ﻿<Window x:Class="NET_TVShowPlaylist.MainWindow.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        Title="{Binding Title}" Height="350" Width="525" >
 
-        <Label Content="{Binding Title}"/>
-        <ListView ItemsSource="{Binding TVShows}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Total Seasons" DisplayMemberBinding="{Binding TotalSeasons}" />
-                    <GridViewColumn Header="Total Episodes" DisplayMemberBinding="{Binding TotalEpisodes}" />
-                    <GridViewColumn Header="Favorite" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Favorite}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </Grid>
+	<Grid Margin="5,7">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		
+		<ContentControl prism:RegionManager.RegionName="ContentRegion" />
+		
+		<!--TEMP: window size text display--> 
+		<!--<StackPanel Orientation="Horizontal">
+			<Label Content="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"/>
+			<Label Content="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"/>
+		</StackPanel>-->
+
+		<!-- TV Show Display -->
+		<ListView ItemsSource="{Binding TVShows}" Grid.Row="0" Grid.ColumnSpan="2"
+					  ItemContainerStyle="{StaticResource alternatingStyle}" AlternationCount="2"
+					  Margin="0,0,0,5" Name="lvTVShow"
+					  ScrollViewer.VerticalScrollBarVisibility="Auto" >
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+					<GridViewColumn Header="Total Seasons" DisplayMemberBinding="{Binding TotalSeasons}" />
+					<GridViewColumn Header="Total Episodes" DisplayMemberBinding="{Binding TotalEpisodes}" />
+					<GridViewColumn Header="Favorite" >
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<CheckBox IsChecked="{Binding Favorite}" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
+
+			<!-- Event Handling -->
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseDoubleClick">
+					<i:InvokeCommandAction Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=lvTVShow, Path=SelectedItem}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</ListView>
+
+		<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" >
+			<Button Content="Refresh"/>
+			<Button Content="Save"/>
+			<Button Content="Load"/>
+		</StackPanel>
+
+	</Grid>
 </Window>
