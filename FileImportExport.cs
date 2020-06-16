@@ -130,6 +130,9 @@ namespace NET_TVShowPlaylist
 			}
 		}
 
+
+		// -------------------Models-------------------
+
 		/// <summary>
 		/// Overview information about a TV show
 		/// as used for reading and writing to a file.
