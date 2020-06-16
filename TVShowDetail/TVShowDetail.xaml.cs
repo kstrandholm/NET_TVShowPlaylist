@@ -3,11 +3,11 @@
 namespace NET_TVShowPlaylist.TVShowDetail
 {
 	/// <summary>
-	/// Interaction logic for TVShowDetailWindow.xaml
+	/// Interaction logic for TVShowDetail.xaml
 	/// </summary>
-	public partial class TVShowDetailWindow : Window
+	public partial class TVShowDetail : Window
 	{
-		public TVShowDetailWindow()
+		public TVShowDetail()
 		{
 			InitializeComponent();
 		}
