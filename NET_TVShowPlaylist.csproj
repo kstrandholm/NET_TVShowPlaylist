@@ -57,8 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="TVShowEvents.cs" />
-    <Compile Include="TVShowDetail\TVShowDetailViewModel.cs" />
-    <Compile Include="TVShowDetail\TVShowDetail.xaml.cs">
+    <Compile Include="TVShowDetails\TVShowDetailViewModel.cs" />
+    <Compile Include="TVShowDetails\TVShowDetail.xaml.cs">
       <DependentUpon>TVShowDetail.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow\MainWindow.xaml">
@@ -75,7 +75,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TVShowDetail\TVShowDetail.xaml">
+    <Page Include="TVShowDetails\TVShowDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

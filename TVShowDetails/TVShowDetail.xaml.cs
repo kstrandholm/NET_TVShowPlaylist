@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace NET_TVShowPlaylist.TVShowDetail
+namespace NET_TVShowPlaylist.TVShowDetails
 {
 	/// <summary>
 	/// Interaction logic for TVShowDetail.xaml

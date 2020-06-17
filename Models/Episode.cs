@@ -11,11 +11,11 @@ namespace NET_TVShowPlaylist.Models
 		/// <summary>
 		/// Constructor with the minimum information needed to create a new Episode record.
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="season"></param>
-		/// <param name="episode"></param>
-		/// <param name="length"></param>
-		/// <param name="watched"></param>
+		/// <param name="name">Name of the episode.</param>
+		/// <param name="season">Season number this episode belongs to within the TV show.</param>
+		/// <param name="episode">Episode number within the season of this TV show.</param>
+		/// <param name="length">Length of this episode in minutes.</param>
+		/// <param name="watched">True if this episode has been watched, otherwise false.</param>
 		public Episode(string name, int season, int episode, int length, bool watched)
 		{
 			ID = new uint();
