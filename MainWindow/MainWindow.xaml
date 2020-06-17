@@ -19,12 +19,6 @@
 		
 		<ContentControl prism:RegionManager.RegionName="ContentRegion" />
 		
-		<!--TEMP: window size text display--> 
-		<!--<StackPanel Orientation="Horizontal">
-			<Label Content="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"/>
-			<Label Content="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"/>
-		</StackPanel>-->
-
 		<!-- TV Show Display -->
 		<ListView ItemsSource="{Binding TVShows}" Grid.Row="0" Grid.ColumnSpan="2"
 					  ItemContainerStyle="{StaticResource alternatingStyle}" AlternationCount="2"
@@ -48,7 +42,9 @@
 			<!-- Event Handling -->
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="MouseDoubleClick">
-					<i:InvokeCommandAction Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=lvTVShow, Path=SelectedItem}" />
+					<i:InvokeCommandAction
+						Command="{Binding ShowDetailCommand}"
+						CommandParameter="{Binding ElementName=lvTVShow, Path=SelectedItem}" />
 				</i:EventTrigger>
 			</i:Interaction.Triggers>
 		</ListView>
