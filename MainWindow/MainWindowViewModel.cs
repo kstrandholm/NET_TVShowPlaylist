@@ -4,11 +4,14 @@ using NET_TVShowPlaylist.Models;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Events;
 
 namespace NET_TVShowPlaylist.MainWindow
 {
 	public class MainWindowViewModel : BindableBase
 	{
+		private IEventAggregator _eventAggregator;
+
 		private string _title = "Prism Application";
 		public string Title
 		{
@@ -30,16 +33,19 @@ namespace NET_TVShowPlaylist.MainWindow
 		/// </summary>
 		public MainWindowViewModel()
 		{
-			_tvShows = FileImportExport.ImportFiles();
+			_eventAggregator = new EventAggregator();
 
+			_tvShows = FileImportExport.ImportFiles();
+			
 			ShowDetailCommand = new DelegateCommand<TVShow>(OpenDetails);
 		}
 
 		public void OpenDetails(TVShow selectedShow)
 		{
 			var show = _tvShows.SingleOrDefault(s => s.Name == selectedShow.Name);
-			
+
 			// Raise event to create new TVShowDeatil window instance and pass in show variable
+			_eventAggregator.GetEvent<TVShowSelectedEvent>().Publish(selectedShow);
 
 			return;
 		}
