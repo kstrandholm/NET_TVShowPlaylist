@@ -1,11 +1,11 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace NET_TVShowPlaylist.TVShowDetails
 {
 	/// <summary>
-	/// Interaction logic for TVShowDetail.xaml
+	/// Interaction logic for PrismUserControl1
 	/// </summary>
-	public partial class TVShowDetail : Window
+	public partial class TVShowDetail : UserControl
 	{
 		public TVShowDetail()
 		{

@@ -1,8 +1,8 @@
-﻿<Window x:Class="NET_TVShowPlaylist.TVShowDetails.TVShowDetail"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:prism="http://prismlibrary.com/"             
-		prism:ViewModelLocator.AutoWireViewModel="True">	
+﻿<UserControl x:Class="NET_TVShowPlaylist.TVShowDetails.TVShowDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -17,9 +17,9 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<StackPanel Orientation="Horizontal">
-			<Label Grid.Row="0" Grid.Column="0" Content="Show Title" />
+		<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+			<Label Content="Show Title" />
 			<TextBlock Width="150" />
 		</StackPanel>
 	</Grid>
-</Window>
+</UserControl>

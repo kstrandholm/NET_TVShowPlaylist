@@ -45,9 +45,18 @@ namespace NET_TVShowPlaylist.MainWindow
 
 		public void OpenDetails(TVShow selectedShow)
 		{
-			_dialogService.ShowDialog("TVShowDialog", new DialogParameters(), r => { });
-
-			var show = _tvShows.SingleOrDefault(s => s.Name == selectedShow.Name);
+			_dialogService.ShowDialog("TVShowDialog", new DialogParameters(selectedShow.ToString()),
+				r =>
+				{
+					if (r.Result == ButtonResult.None)
+						Title = "Result is None";
+					else if (r.Result == ButtonResult.OK)
+						Title = "Result is OK";
+					else if (r.Result == ButtonResult.Cancel)
+						Title = "Result is Cancel";
+					else
+						Title = "I Don't know what you did!?";
+				});
 
 			// Raise event to create new TVShowDeatil window instance and pass in show variable.
 			_eventAggregator.GetEvent<TVShowSelectedEvent>().Publish(selectedShow);
